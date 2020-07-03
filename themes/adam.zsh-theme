@@ -4,11 +4,18 @@ if [[ -z `functions screen_prompt_info` ]] ; then
     }
 fi
 
+if [[ -z `functions git_repo_name` ]] ; then
+    function git_repo_name() {
+      ref=$(git rev-parse --show-toplevel | sed 's#^.*/##' 2> /dev/null) || return
+      echo "$ref"
+    }
+fi
+
 
 PROMPT='%(?,✅,🚫) %% '
 # RPS1='%{$fg[blue]%}%~%{$reset_color%} '
 machine_color=$fg[blue]
-RPS1='%{$machine_color%}%m:%2~$(screen_prompt_info)$(git_prompt_info)$(conda_env_prompt_info)$(virtualenv_prompt_info)%{$reset_color%} %T⏰ '
+RPS1='%{$machine_color%}%m:%2~$(git_repo_name)$(screen_prompt_info)$(git_prompt_info)$(conda_env_prompt_info)$(virtualenv_prompt_info)%{$reset_color%} %T⏰ '
 
 ZSH_THEME_SCREEN_PREFIX=" %{$fg[grey]%}"
 ZSH_THEME_SCREEN_SUFFIX="💻"
