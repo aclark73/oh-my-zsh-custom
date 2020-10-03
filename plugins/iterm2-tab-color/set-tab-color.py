@@ -93,7 +93,7 @@ def rainbow_unicorn(name, lightness, saturation):
         if hue_name:
             hue = get_hue_by_string(hue_name)
         else:
-            hue = get_random_by_string(name)
+            hue = get_random_by_string(os.path.basename(name))
         color = colorsys.hls_to_rgb(hue, lightness, saturation)
         decorate_terminal(color)
     else:

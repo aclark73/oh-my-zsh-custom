@@ -14,7 +14,7 @@ if [[ "$TERM_PROGRAM" == "iTerm.app" ]] && [[ -z "$INSIDE_EMACS" ]]; then
     if [[ "$_tab_name" != "$tab_name" ]]; then
       # echo "Updating to $_tab_name"
       tab_name="$_tab_name"
-      python "$pyscript" $tab_name
+      python "$pyscript" "$tab_name"
     fi
   }
 
